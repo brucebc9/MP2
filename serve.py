@@ -13,8 +13,10 @@ def home():
     ipaddr = socket.gethostbyname(hostName)
 
     if request.method == 'POST':
-        subprocess.run(["./stress_cpu.py"], shell=True, capture_output=True, text=True)
-        return redirect(url_for("home"))
+        result = subprocess.Popen(["python", "./stress_cpu.py"])
+        # print(result.stdout)
+        # return redirect(url_for("home"))
+        return ipaddr
     else:
         return ipaddr
 
